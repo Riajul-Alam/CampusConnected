@@ -12,6 +12,10 @@ namespace Connected_Campus.Data
         public DbSet<Student> Students { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<Course> Courses { get; set; }
+        public DbSet<Administration> Administrations { get; set; }
+
+
+
         public DbSet<RegisteredCourse> RegisteredCourses { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
