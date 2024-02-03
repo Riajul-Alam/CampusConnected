@@ -1,0 +1,68 @@
+﻿@model CampusConnected.Models.Student
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@ViewData["Title"]</title>
+    <!-- Add Bootstrap CSS link here -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        /* Add your custom styles here */
+        body {
+            padding: 20px;
+        }
+
+        h1 {
+            color: #007bff;
+        }
+
+        h4 {
+            color: #495057;
+        }
+
+        .row {
+            margin-bottom: 20px;
+        }
+
+        a {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Details</h1>
+
+        <div>
+            <h4>Student</h4>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Id)</dt>
+                <dd class="col-sm-10">@Html.DisplayFor(model => model.Id)</dd>
+
+                <dt class="col-sm-2">@Html.DisplayNameFor(model => model.StudentId)</dt>
+                <dd class="col-sm-10">@Html.DisplayFor(model => model.StudentId)</dd>
+
+                <dt class="col-sm-2">@Html.DisplayNameFor(model => model.StudentName)</dt>
+                <dd class="col-sm-10">@Html.DisplayFor(model => model.StudentName)</dd>
+            </dl>
+        </div>
+
+        <div>
+            <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">Edit</a>
+            <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+        </div>
+    </div>
+
+    <!-- Add Bootstrap JS script if needed -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

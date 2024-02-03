@@ -1,0 +1,208 @@
+﻿@model CampusConnected.Models.Student
+@using CampusConnected.Models
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<style>
+    .custom-blue-bg {
+        background-color: darkslategrey;
+        color: #fff; /* White text for better readability */
+    }
+
+</style>
+
+
+<div class="container mt-5 custom-blue-bg p-4 rounded">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h1 class="text-center">Create Student</h1>
+            <hr />
+            <form id="myForm" asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+              
+                <div class="form-group">
+                    <label asp-for="StudentId" class="control-label">Student Id:</label>
+                    <input asp-for="StudentId" class="form-control" />
+                    <span asp-validation-for="StudentId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="StudentName" class="control-label">Student Name:</label>
+                    <input asp-for="StudentName" class="form-control" />
+                    <span asp-validation-for="StudentName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Email" class="control-label">Email:</label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password" class="control-label">Password:</label>
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Phone" class="control-label">Phone:</label>
+                    <input asp-for="Phone" class="form-control" />
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                    <span id="phoneNumberError" class="text-danger"></span> <!-- Added element for error message -->
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="BirthDate" class="control-label">Birth Date:</label>
+                    <input asp-for="BirthDate" class="form-control" />
+                    <span asp-validation-for="BirthDate" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Gender" class="control-label">Gender:</label>
+                    <select asp-for="Gender" asp-items="Html.GetEnumSelectList<Student.GenderList>()" class="form-control"></select>
+                    <span asp-validation-for="Gender" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Faculty" class="control-label">Faculty:</label>
+                    <select asp-for="Faculty" asp-items="Html.GetEnumSelectList<Student.FacultyList>()" class="form-control"></select>
+                    <span asp-validation-for="Faculty" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="DepartmentId" class="control-label">Department:</label>
+                    <select asp-for="DepartmentId" asp-items="@(new SelectList(Model.DepartmentList, "DId", "Name"))" class="form-control">
+                        <option value="">-- Select Department --</option>
+                    </select>
+                    <span id="validationResult" class="text-danger"></span> <!-- Added element for validation result -->
+                   
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Semester" class="control-label">Semester:</label>
+                    <select asp-for="Semester" asp-items="Html.GetEnumSelectList<Student.SemesterList>()" class="form-control"></select>
+                    <span asp-validation-for="Semester" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <input id="button_click" type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="text-center mt-3">
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script>
+
+        
+    $(document).ready(function () {
+        $("input[name='Phone']").on("blur", function () {
+            var phoneNumber = $(this).val();
+            var isValid = validatePhoneNumber(phoneNumber);
+
+            if (!isValid) {
+                $("#phoneNumberError").text("Enter a valid phone number").show();
+            } else {
+                $("#phoneNumberError").hide();
+            }
+        });
+
+        $("#myForm").submit(function (event) {
+            var phoneNumber = $("input[name='Phone']").val();
+            var isValid = validatePhoneNumber(phoneNumber);
+
+            if (!isValid) {
+                $("#phoneNumberError").text("Enter a valid phone number").show();
+                event.preventDefault(); // Prevent form submission
+            }
+           
+        });
+
+        function validatePhoneNumber(phoneNumber) {
+           
+            if(phoneNumber[0] === '+'){
+                if (phoneNumber[0] === '+' && phoneNumber[1] === '8' && phoneNumber[2] === '8') {
+                    var extractedString = phoneNumber.substring(2);
+                    return isValidPhone(extractedString);
+                }
+               else return false;
+            }
+                       
+
+
+            return isValidPhone(phoneNumber);
+        }
+
+        function check11Digit(pno) {
+            // Implement your check_11_digit method logic in JavaScript
+            return !(pno[0] !== '0' || pno[1] !== '1' || pno[2] === '2' || pno.match(/[a-zA-Z]/));
+        }
+
+        function isValidPhone(num) {
+            if (num.length != 11) return false;
+            // Implement your is_valid_phone method logic in JavaScript
+            var pattern = /^01[3456789][0-9]{8}$/;
+            return pattern.test(num);
+        }
+
+        $("#DepartmentId").on("change", function () {
+            // Get the selected faculty and department values
+            var selectedFaculty = $("#Faculty").val();
+            var selectedDepartmentId = $(this).val();
+
+            // Make an AJAX request to check if the department is under the selected faculty
+            $.ajax({
+                url: '@Url.Action("IsDepartmentInFaculty", "Home")',
+                type: "GET",
+                data: { facultyId: selectedFaculty, departmentId: selectedDepartmentId },
+                success: function (data) {
+                    // Handle the result
+                    if (data.isValid) {
+                        // Department is valid for the selected faculty
+                        $("#validationResult").text("valid");
+                    } else {
+                        // Department is not valid for the selected faculty
+                        $("#validationResult").text("Department is not valid for the selected faculty.");
+                    }
+                },
+                error: function () {
+                    // Handle errors if any
+                    $("#validationResult").text("Error occurred.");
+                }
+            });
+        });
+
+        $("#myForm").submit(function (event) {
+            // Check if the department is valid
+            var validationResult = $("#validationResult").text().trim();
+            if (validationResult === "valid") {
+                // Department is valid, continue with form submission
+                //alert("Form submitted successfully!");
+            } else {
+
+                // Department is not valid, prevent form submission
+                event.preventDefault();
+                // Display an error message or perform any additional actions
+                alert("Please select a valid department for the faculty.");
+            }
+
+            // Add your additional logic here if needed
+        });
+        
+   
+    });
+
+
+</script>

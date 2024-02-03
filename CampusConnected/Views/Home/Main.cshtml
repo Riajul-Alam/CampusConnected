@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<style>
+    .highlighted-button {
+        font-size: 24px;
+        padding: 15px 30px;
+        margin-top: 20px;
+        /* Add more styles here for highlighting */
+    }
+
+    .h3 {
+        color: darkgreen;
+        font-weight: bold;
+    }
+</style>
+
+
+<div class="text-center">
+    <h3 class="display-3 h3">Welcome To Connected Campus</h3>
+    <a asp-action="Login" asp-controller="Admin" class="btn btn-primary highlighted-button">Admin</a><br><br>
+    <a asp-action="Login" asp-controller="Teacher" class="btn btn-primary highlighted-button">Teacher</a><br><br>
+    <a asp-action="Login" asp-controller="Student" class="btn btn-primary highlighted-button">Student</a>
+</div>
+
+
+
+
+
+
+
+

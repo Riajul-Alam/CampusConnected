@@ -1,0 +1,70 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewData["Title"]</title>
+    <!-- Add Bootstrap CSS link here -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        /* Add your custom styles here */
+        body {
+            padding: 20px;
+        }
+
+        h1 {
+            color: #007bff;
+        }
+
+        .dashboard-btn {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>@ViewBag.MySession</h2>
+
+    <h1>Dashboard</h1>
+
+    <a asp-action="" asp-controller="" class="btn btn-primary dashboard-btn">
+        Profile
+    </a>
+
+    <a asp-action="ShowStudentDetails" asp-controller="Admin" class="btn btn-primary dashboard-btn">
+        Student List
+    </a>
+
+    <a asp-action="TeacherList" asp-controller="Admin" class="btn btn-primary dashboard-btn">
+        Teacher List
+    </a>
+
+    <a asp-action="Create" asp-controller="Department" class="btn btn-primary dashboard-btn">
+        Add Department
+    </a>
+
+    <a asp-action="Create" asp-controller="Course" class="btn btn-primary dashboard-btn">
+        Add Course
+    </a>
+
+    <a asp-action="Create" asp-controller="StudentCourse" class="btn btn-primary dashboard-btn">
+        Course Registration
+    </a>
+
+    <a asp-action="Index" asp-controller="ResultSubmission" class="btn btn-primary dashboard-btn">
+        Result Submission
+    </a>
+
+    <a asp-controller="Admin" asp-action="Logout" class="btn btn-danger">
+        Logout
+    </a>
+
+    <!-- Add Bootstrap JS and Popper.js scripts if needed -->
+    <!-- These scripts are required for some Bootstrap components -->
+    <!-- Add Bootstrap JS and Popper.js scripts if needed -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

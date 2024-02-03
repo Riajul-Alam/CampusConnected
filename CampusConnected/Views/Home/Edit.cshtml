@@ -1,0 +1,148 @@
+﻿@model CampusConnected.Models.Student
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<style>
+    .custom-blue-bg {
+        background-color: darkslateblue;
+        color: #fff; /* White text for better readability */
+    }
+</style>
+
+<h1 class="text-center custom-blue-bg p-3 rounded">Edit Student</h1>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-6">
+            <form id="myForm" asp-action="Edit" class="custom-blue-bg p-4 rounded">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <label asp-for="StudentId" class="control-label">Student ID:</label>
+                    <input asp-for="StudentId" class="form-control" readonly />
+                    <span asp-validation-for="StudentId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="StudentName" class="control-label">Student Name:</label>
+                    <input asp-for="StudentName" class="form-control" />
+                    <span asp-validation-for="StudentName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Email" class="control-label">Email:</label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Phone" class="control-label">Phone:</label>
+                    <input asp-for="Phone" class="form-control" />
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                    <span id="phoneNumberError" class="text-danger"></span> <!-- Added element for error message -->
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="BirthDate" class="control-label">Birth Date:</label>
+                    <input asp-for="BirthDate" class="form-control" />
+                    <span asp-validation-for="BirthDate" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Gender" class="control-label">Gender:</label>
+                    <select asp-for="Gender" asp-items="Html.GetEnumSelectList<Student.GenderList>()" class="form-control"></select>
+                    <span asp-validation-for="Gender" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="DepartmentId" class="control-label">Department:</label>
+                    <select id="departmentDropdown" asp-for="DepartmentId" asp-items="@(new SelectList(Model.DepartmentList, "DId", "Name"))" class="form-control">
+                        <option value="">-- Select Department --</option>
+                    </select>
+                </div>
+                <input type="hidden" id="DepartmentIdHidden" asp-for="DepartmentId" />
+
+                <input type="hidden" id="DepartmentIdHidden" asp-for="DepartmentName" />
+
+
+
+
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+
+        <!-- Right column -->
+        <div class="col-md-6">
+            <!-- Additional content or form fields for the right column -->
+        </div>
+    </div>
+</div>
+
+<div class="text-center mt-3">
+    <a asp-action="StudentList" class="btn btn-secondary">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+
+    var currentDepartmentId = document.getElementById("departmentDropdown").value;
+
+    // Set the DepartmentId value (you can use this value as needed)
+    // For example, you can store it in a hidden input field
+    document.getElementById("DepartmentIdHidden").value = currentDepartmentId;
+
+    // Disable the dropdown
+    document.getElementById("departmentDropdown").disabled = true;
+
+
+    $(document).ready(function () {
+        $("input[name='Phone']").on("input", function () {
+            var phoneNumber = $(this).val();
+            var isValid = validatePhoneNumber(phoneNumber);
+
+            if (!isValid) {
+                $("#phoneNumberError").text("Enter a valid phone number").show();
+            } else {
+                $("#phoneNumberError").hide();
+            }
+        });
+
+        $("#myForm").submit(function (event) {
+            var phoneNumber = $("input[name='Phone']").val();
+            var isValid = validatePhoneNumber(phoneNumber);
+
+            if (!isValid) {
+                $("#phoneNumberError").text("Enter a valid phone number").show();
+                event.preventDefault(); // Prevent form submission
+            }
+        });
+
+        function validatePhoneNumber(phoneNumber) {
+            if (phoneNumber[0] === '+') {
+                if (phoneNumber[1] === '8' && phoneNumber[2] === '8') {
+                    var extractedString = phoneNumber.substring(3);
+                    return isValidPhone(extractedString);
+                } else {
+                    return false;
+                }
+            }
+
+            return isValidPhone(phoneNumber);
+        }
+
+        function isValidPhone(num) {
+            if (num.length !== 11) return false;
+            var pattern = /^01[3456789][0-9]{8}$/;
+            return pattern.test(num);
+        }
+    });
+</script>

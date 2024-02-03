@@ -1,0 +1,287 @@
+﻿@{
+    // Retrieve values from ViewData
+    string studentId = ViewData["StudentId"] as string;
+    string studentName = ViewData["StudentName"] as string;
+    string departmentName = ViewData["DepartmentId"] as string;
+    string email = ViewData["Email"] as string;
+    //double grade = ViewData["grade"] as double;
+
+    // Retrieve grade-related information (modify as needed based on your actual variables)
+    List<string> cList0 = ViewData["CourseList0"] as List<string>;
+    List<double> grades0 = ViewData["Grades0"] as List<double>;
+    List<string> gradeDescriptions0 = ViewData["GradeDescriptions0"] as List<string>;
+
+    List<string> cList1 = ViewData["CourseList1"] as List<string>;
+    List<double> grades1 = ViewData["Grades1"] as List<double>;
+    List<string> gradeDescriptions1 = ViewData["GradeDescriptions1"] as List<string>;
+
+    List<string> cList2 = ViewData["CourseList2"] as List<string>;
+    List<double> grades2 = ViewData["Grades2"] as List<double>;
+    List<string> gradeDescriptions2 = ViewData["GradeDescriptions2"] as List<string>;
+
+    List<string> cList3 = ViewData["CourseList3"] as List<string>;
+    List<double> grades3 = ViewData["Grades3"] as List<double>;
+    List<string> gradeDescriptions3 = ViewData["GradeDescriptions3"] as List<string>;
+
+    List<string> cList4 = ViewData["CourseList4"] as List<string>;
+    List<double> grades4 = ViewData["Grades4"] as List<double>;
+    List<string> gradeDescriptions4 = ViewData["GradeDescriptions4"] as List<string>;
+
+    List<string> cList5 = ViewData["CourseList5"] as List<string>;
+    List<double> grades5 = ViewData["Grades5"] as List<double>;
+    List<string> gradeDescriptions5 = ViewData["GradeDescriptions5"] as List<string>;
+
+    List<string> cList6 = ViewData["CourseList6"] as List<string>;
+    List<double> grades6 = ViewData["Grades6"] as List<double>;
+    List<string> gradeDescriptions6 = ViewData["GradeDescriptions6"] as List<string>;
+
+    List<string> cList7 = ViewData["CourseList7"] as List<string>;
+    List<double> grades7 = ViewData["Grades7"] as List<double>;
+    List<string> gradeDescriptions7 = ViewData["GradeDescriptions7"] as List<string>;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Result Summary</title>
+    <!-- Add any additional styles or scripts here -->
+    <style>
+        h1 {
+            margin-top: 20px;
+            font-size: 1.5em; /* Adjust the font size as needed */
+            color: #333; /* Adjust the color as needed */
+        }
+
+        .centered-text {
+            text-align: center;
+            margin-top: 20px; /* Add margin-top as needed */
+            margin-bottom: 20px; /* Add margin-bottom as needed */
+        }
+    </style>
+</head>
+<body>
+
+    <h1 class="text-center">Student Grade Information</h1>
+
+    <div class="text-center">
+        <p><strong>Student ID:</strong> @studentId</p>
+        <p><strong>Student Name:</strong> @studentName</p>
+        <p><strong>Department:</strong> @departmentName</p>
+    </div>
+
+
+
+    @if (cList0 != null && cList0.Count > 0)
+    {
+        <h1 class="text-center">Course Result Status of Semester : First</h1>
+        <table class="table mx-auto">
+            <thead>
+                <tr>
+                    <th>Course Name</th>
+                    <th>Grade</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < cList0.Count; i++)
+                {
+                    <tr>
+                        <td>@cList0[i]</td>
+                        <td>@grades0[i]</td>
+                        <td>@gradeDescriptions0[i]</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+    @if (cList1 != null && cList1.Count > 0)
+    {
+        <h1 class="text-center">Course Result Status of Semester : Second</h1>
+        <table class="table mx-auto">
+            <thead>
+                <tr>
+                    <th>Course Name</th>
+                    <th>Grade</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < cList1.Count; i++)
+                {
+                    <tr>
+                        <td>@cList1[i]</td>
+                        <td>@grades1[i]</td>
+                        <td>@gradeDescriptions1[i]</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+    @if (cList2 != null && cList2.Count > 0)
+    {
+        <h1 class="text-center">Course Result Status of Semester : Third</h1>
+        <table class="table mx-auto">
+            <thead>
+                <tr>
+                    <th>Course Name</th>
+                    <th>Grade</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < cList2.Count; i++)
+                {
+                    <tr>
+                        <td>@cList2[i]</td>
+                        <td>@grades2[i]</td>
+                        <td>@gradeDescriptions2[i]</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+    @if (cList3 != null && cList3.Count > 0)
+    {
+        <h1 class="text-center">Course Result Status of Semester : Fourth</h1>
+        <table class="table mx-auto">
+            <thead>
+                <tr>
+                    <th>Course Name</th>
+                    <th>Grade</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < cList3.Count; i++)
+                {
+                    <tr>
+                        <td>@cList3[i]</td>
+                        <td>@grades3[i]</td>
+                        <td>@gradeDescriptions3[i]</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+    @if (cList4 != null && cList4.Count > 0)
+    {
+        <h1 class="text-center">Course Result Status of Semester : Five</h1>
+        <table class="table mx-auto">
+            <thead>
+                <tr>
+                    <th>Course Name</th>
+                    <th>Grade</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < cList4.Count; i++)
+                {
+                    <tr>
+                        <td>@cList4[i]</td>
+                        <td>@grades4[i]</td>
+                        <td>@gradeDescriptions4[i]</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+    @if (cList5 != null && cList5.Count > 0)
+    {
+        <h1 class="text-center">Course Result Status of Semester : Sixth</h1>
+        <table class="table mx-auto">
+            <thead>
+                <tr>
+                    <th>Course Name</th>
+                    <th>Grade</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < cList5.Count; i++)
+                {
+                    <tr>
+                        <td>@cList5[i]</td>
+                        <td>@grades5[i]</td>
+                        <td>@gradeDescriptions5[i]</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+    @if (cList6 != null && cList6.Count > 0)
+    {
+        <h1 class="text-center">Course Result Status of Semester : Seventh</h1>
+        <table class="table mx-auto">
+            <thead>
+                <tr>
+                    <th>Course Name</th>
+                    <th>Grade</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < cList6.Count; i++)
+                {
+                    <tr>
+                        <td>@cList6[i]</td>
+                        <td>@grades6[i]</td>
+                        <td>@gradeDescriptions6[i]</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+    @if (cList7 != null && cList7.Count > 0)
+    {
+        <h1 class="text-center">Course Result Status of Semester : Eighth</h1>
+        <table class="table mx-auto">
+            <thead>
+                <tr>
+                    <th>Course Name</th>
+                    <th>Grade</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < cList7.Count; i++)
+                {
+                    <tr>
+                        <td>@cList7[i]</td>
+                        <td>@grades7[i]</td>
+                        <td>@gradeDescriptions7[i]</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+
+    <div class="centered-text">
+        <label>------------ Current CGPA is: </label>
+        <span>@ViewData["grade"]</span>
+        <label>------------ </label>
+    </div>
+
+    <button onclick="printPage()" class="btn btn-primary">Print</button>
+
+    <button onclick="sendEmail('@email')" class="btn btn-secondary">Email</button>
+    <script>
+        function printPage() {
+            window.print();
+        }
+
+        function sendEmail(emailAddress) {
+            window.location.href = 'mailto:' + emailAddress;
+        }
+    </script>
+
+</body>
+</html>
