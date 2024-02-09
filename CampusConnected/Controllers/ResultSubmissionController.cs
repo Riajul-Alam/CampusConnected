@@ -24,7 +24,7 @@ namespace CampusConnected.Controllers
         {
             if (HttpContext.Session.GetString("AdminSession") != null)
             {
-                ViewBag.MySession = HttpContext.Session.GetString("UserSession").ToString();
+                ViewBag.MySession = HttpContext.Session.GetString("AdminSession").ToString();
             }
             else if(HttpContext.Session.GetString("TeacherSession") != null)
             {

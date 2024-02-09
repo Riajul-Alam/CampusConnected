@@ -2032,47 +2032,6 @@
           "lib/netstandard2.0/NuGet.Versioning.dll": {}
         }
       },
-      "OpenCvSharp4/4.9.0.20240103": {
-        "type": "package",
-        "dependencies": {
-          "System.Memory": "4.5.5",
-          "System.Runtime.CompilerServices.Unsafe": "6.0.0"
-        },
-        "compile": {
-          "lib/net6.0/OpenCvSharp.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net6.0/OpenCvSharp.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "OpenCvSharp4.runtime.win/4.9.0.20240103": {
-        "type": "package",
-        "build": {
-          "build/net5.0/OpenCvSharp4.runtime.win.props": {}
-        },
-        "runtimeTargets": {
-          "runtimes/win-x64/native/OpenCvSharpExtern.dll": {
-            "assetType": "native",
-            "rid": "win-x64"
-          },
-          "runtimes/win-x64/native/opencv_videoio_ffmpeg490_64.dll": {
-            "assetType": "native",
-            "rid": "win-x64"
-          },
-          "runtimes/win-x86/native/OpenCvSharpExtern.dll": {
-            "assetType": "native",
-            "rid": "win-x86"
-          },
-          "runtimes/win-x86/native/opencv_videoio_ffmpeg490.dll": {
-            "assetType": "native",
-            "rid": "win-x86"
-          }
-        }
-      },
       "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
         "type": "package",
         "runtimeTargets": {
@@ -6694,44 +6653,6 @@
         "nuget.versioning.nuspec"
       ]
     },
-    "OpenCvSharp4/4.9.0.20240103": {
-      "sha512": "+BJMqToSH3dl+5SUF2YaPI+1eY/o/aTtvCQsY3qgcE4YS8qvPNS7MObzzVy4avYrBmcEEFnCvNF+1VbFnQjU9w==",
-      "type": "package",
-      "path": "opencvsharp4/4.9.0.20240103",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/net48/OpenCvSharp.dll",
-        "lib/net48/OpenCvSharp.xml",
-        "lib/net6.0/OpenCvSharp.dll",
-        "lib/net6.0/OpenCvSharp.xml",
-        "lib/netstandard2.0/OpenCvSharp.dll",
-        "lib/netstandard2.0/OpenCvSharp.xml",
-        "lib/netstandard2.1/OpenCvSharp.dll",
-        "lib/netstandard2.1/OpenCvSharp.xml",
-        "opencvsharp4.4.9.0.20240103.nupkg.sha512",
-        "opencvsharp4.nuspec"
-      ]
-    },
-    "OpenCvSharp4.runtime.win/4.9.0.20240103": {
-      "sha512": "PkV3ge6rE//gj0OlG4TRXzmcLVDoKsJx0lYN1ogx9gZhqUPHlzrnWqKk2hAFK+nU8T0chRhrwHL0U2hSMyoCWw==",
-      "type": "package",
-      "path": "opencvsharp4.runtime.win/4.9.0.20240103",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "build/net48/OpenCvSharp4.runtime.win.props",
-        "build/net5.0/OpenCvSharp4.runtime.win.props",
-        "build/netcoreapp/OpenCvSharp4.runtime.win.props",
-        "build/netstandard/OpenCvSharp4.runtime.win.props",
-        "opencvsharp4.runtime.win.4.9.0.20240103.nupkg.sha512",
-        "opencvsharp4.runtime.win.nuspec",
-        "runtimes/win-x64/native/OpenCvSharpExtern.dll",
-        "runtimes/win-x64/native/opencv_videoio_ffmpeg490_64.dll",
-        "runtimes/win-x86/native/OpenCvSharpExtern.dll",
-        "runtimes/win-x86/native/opencv_videoio_ffmpeg490.dll"
-      ]
-    },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
       "sha512": "HdSSp5MnJSsg08KMfZThpuLPJpPwE5hBXvHwoKWosyHHfe8Mh5WKT0ylEOf6yNzX6Ngjxe4Whkafh5q7Ymac4Q==",
       "type": "package",
@@ -10764,9 +10685,7 @@
       "Microsoft.EntityFrameworkCore.Relational >= 6.0.25",
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.25",
       "Microsoft.EntityFrameworkCore.Tools >= 6.0.25",
-      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 6.0.16",
-      "OpenCvSharp4 >= 4.9.0.20240103",
-      "OpenCvSharp4.runtime.win >= 4.9.0.20240103"
+      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 6.0.16"
     ]
   },
   "packageFolders": {
@@ -10835,14 +10754,6 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
             "version": "[6.0.16, )"
-          },
-          "OpenCvSharp4": {
-            "target": "Package",
-            "version": "[4.9.0.20240103, )"
-          },
-          "OpenCvSharp4.runtime.win": {
-            "target": "Package",
-            "version": "[4.9.0.20240103, )"
           }
         },
         "imports": [

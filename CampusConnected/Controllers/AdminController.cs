@@ -86,7 +86,7 @@ namespace CampusConnected.Controllers
 
         public async Task<IActionResult> TeacherList()
         {
-            if (HttpContext.Session.GetString("AdminSession") != null)
+            if (HttpContext.Session.GetString("AdminSession") == null)
             {
                 return RedirectToAction("Dashboard");
             }

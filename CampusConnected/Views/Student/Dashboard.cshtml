@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewData["Title"]</title>
+    <!-- Add Bootstrap CSS link here -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        /* Add your custom styles here */
+        body {
+            padding: 20px;
+        }
+
+        h1 {
+            color: #007bff;
+        }
+
+        .dashboard-btn {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>@ViewBag.MySession</h2>
+    <h1>Dashboard</h1>
+
+    <a asp-action="Profile" asp-controller="Student" class="btn btn-primary dashboard-btn">
+        Profile
+    </a>
+
+    <a asp-action="StudentList" asp-controller="Teacher" class="btn btn-primary dashboard-btn">
+		Registered Courses
+    </a>
+
+    <a asp-action="Index" asp-controller="ResultSubmission" class="btn btn-primary dashboard-btn">
+        Offered Courses
+    </a>
+
+    <a asp-controller="Teacher" asp-action="Logout" class="btn btn-danger">
+        Logout
+    </a>
+
+    <!-- Add Bootstrap JS and Popper.js scripts if needed -->
+    <!-- These scripts are required for some Bootstrap components -->
+    <!-- Add Bootstrap JS and Popper.js scripts if needed -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

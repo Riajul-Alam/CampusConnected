@@ -9,18 +9,6 @@
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
-      "Id": "F:\\1. Final Year Project\\Updated project\\CampusConnected\\CampusConnected\\wwwroot\\data\\faces.pkl",
-      "PackagePath": "staticwebassets\\data\\faces.pkl"
-    },
-    {
-      "Id": "F:\\1. Final Year Project\\Updated project\\CampusConnected\\CampusConnected\\wwwroot\\data\\haarcascade_frontalface_default.xml",
-      "PackagePath": "staticwebassets\\data\\haarcascade_frontalface_default.xml"
-    },
-    {
-      "Id": "F:\\1. Final Year Project\\Updated project\\CampusConnected\\CampusConnected\\wwwroot\\data\\names.pkl",
-      "PackagePath": "staticwebassets\\data\\names.pkl"
-    },
-    {
       "Id": "F:\\1. Final Year Project\\Updated project\\CampusConnected\\CampusConnected\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },

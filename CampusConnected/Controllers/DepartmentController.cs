@@ -31,10 +31,10 @@ namespace CampusConnected.Controllers
         // GET: Department/Create
         public IActionResult Create()
         {
-            if (HttpContext.Session.GetString("UserSession") != null)
+            if (HttpContext.Session.GetString("AdminSession") != null)
             {
-                ViewBag.MySession = HttpContext.Session.GetString("UserSession").ToString();
-            }
+				ViewBag.MySession = HttpContext.Session.GetString("AdminSession").ToString();
+			}
             else
             {
                 return RedirectToAction("Login");
