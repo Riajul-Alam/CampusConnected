@@ -187,10 +187,13 @@ namespace CampusConnected.Controllers
 
 				if (student != null)
 				{
-					ViewBag.CurrentStudentId=student.StudentId;
-					ViewBag.CurrentDepartmentId=student.DepartmentId;
-				}
-				else
+                    /*					ViewBag.CurrentStudentId=(student.StudentId) as string;
+                                        ViewBag.CurrentDepartmentId=(student.DepartmentId);*/
+                    ViewBag.CurrentStudentId = student.StudentId.ToString();
+                    ViewBag.CurrentDepartmentName = student.DepartmentName;
+
+                }
+                else
 				{
 					return RedirectToAction("Login");
 				}
@@ -201,6 +204,7 @@ namespace CampusConnected.Controllers
 			}
 
 
+/*
 			var departments = studentDB.Departments.ToList();
 			var students = studentDB.Students.ToList();
 			var obj = new ResultReport
@@ -209,10 +213,11 @@ namespace CampusConnected.Controllers
 				DepartmentList = departments,
 			};
 
-			ViewData["ViewModelData"] = obj;
+			ViewData["ViewModelData"] = obj;*/
 
 			var sortedResults = studentDB.studentResult.OrderByDescending(result => result.Grade).ToList();
 			ViewData["SortedResults"] = sortedResults;
+
 
 			return View();
 		}
@@ -278,6 +283,7 @@ namespace CampusConnected.Controllers
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
+
 		public async Task<IActionResult> Report(ResultReport std)
 		{
 
