@@ -28,7 +28,7 @@
 
     <h1>Dashboard</h1>
 
-    <a asp-action="" asp-controller="" class="btn btn-primary dashboard-btn">
+    <a asp-action="Profile" asp-controller="Admin" class="btn btn-primary dashboard-btn">
         Profile
     </a>
 
@@ -55,7 +55,10 @@
     <a asp-action="Index" asp-controller="ResultSubmission" class="btn btn-primary dashboard-btn">
         Result Submission
     </a>
-
+	<a asp-action="Index" asp-controller="ResultReport" class="btn btn-primary dashboard-btn">
+        Result Report
+    </a>
+    
     <a asp-controller="Admin" asp-action="Logout" class="btn btn-danger">
         Logout
     </a>

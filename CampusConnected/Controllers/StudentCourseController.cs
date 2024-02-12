@@ -103,6 +103,10 @@ namespace CampusConnected.Controllers
             {
 				ViewBag.MySession = HttpContext.Session.GetString("AdminSession").ToString();
 			}
+            else if (HttpContext.Session.GetString("TeacherSession") != null)
+            {
+                ViewBag.MySession = HttpContext.Session.GetString("TeacherSession").ToString();
+            }
             else
             {
                 return RedirectToAction("Login");

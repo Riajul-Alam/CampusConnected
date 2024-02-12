@@ -60,8 +60,33 @@ namespace CampusConnected.Controllers
             }
             return View();
         }
+		[HttpGet]
+		public IActionResult Profile()
+		{
+			if (HttpContext.Session.GetString("AdminSession") != null)
+			{
+				ViewBag.MySession = HttpContext.Session.GetString("AdminSession").ToString();
+				string userEmail = HttpContext.Session.GetString("AdminSession");
 
-        public IActionResult Logout()
+				Admin student = context.Admins.
+					FirstOrDefault(s => s.Email == userEmail);
+
+				if (student != null)
+				{
+					return View(student);
+				}
+				else
+				{
+					return RedirectToAction("Login");
+				}
+			}
+			else
+			{
+				return RedirectToAction("Login");
+			}
+		}
+
+		public IActionResult Logout()
         {
             if (HttpContext.Session.GetString("AdminSession") != null)
             {

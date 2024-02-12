@@ -32,6 +32,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[F:/1. Final Year Project/Updated project/CampusConnected/CampusConnected/Views/Admin/Profile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cUHJvZmlsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [F:/1. Final Year Project/Updated project/CampusConnected/CampusConnected/Views/Admin/TeacherList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVGVhY2hlckxpc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -152,8 +156,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxEYXNoYm9hcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[F:/1. Final Year Project/Updated project/CampusConnected/CampusConnected/Views/Student/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [F:/1. Final Year Project/Updated project/CampusConnected/CampusConnected/Views/Student/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/1. Final Year Project/Updated project/CampusConnected/CampusConnected/Views/Student/Profile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxQcm9maWxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/1. Final Year Project/Updated project/CampusConnected/CampusConnected/Views/Student/Report.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxSZXBvcnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [F:/1. Final Year Project/Updated project/CampusConnected/CampusConnected/Views/Teacher/Create.cshtml]
