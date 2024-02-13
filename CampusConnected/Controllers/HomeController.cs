@@ -299,6 +299,21 @@ namespace CampusConnected.Controllers
             }
             return View();
         }
+
+        //search related
+        [HttpGet]
+        public async Task<IActionResult> StudentList(string stdsearch)
+        {
+            ViewData["GetStddetails"] = stdsearch;
+
+            var stdquery = from x in studentDB.Students select x;
+            if (!string.IsNullOrEmpty(stdsearch))
+            {
+                stdquery = stdquery.Where(x => x.StudentName.Contains(stdsearch) || x.StudentId.Contains(stdsearch));
+            }
+            return View(await stdquery.AsNoTracking().ToListAsync());
+        }
+
         public IActionResult Logout()
         {
             if (HttpContext.Session.GetString("UserSession") != null)

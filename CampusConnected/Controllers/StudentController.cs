@@ -1,5 +1,7 @@
 ﻿using CampusConnected.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography;
 
 namespace CampusConnected.Controllers
 {
@@ -79,6 +81,50 @@ namespace CampusConnected.Controllers
                 return RedirectToAction("Login");
             }
         }
+        [HttpGet]
+        //Show registered Course Details
+        public IActionResult ShowRegisteredCourses()
+        {
+            int currentStudentId;
+            if (HttpContext.Session.GetString("StudentSession") != null)
+            {
+               // ViewBag.MySession = HttpContext.Session.GetString("StudentSession").ToString();
+                string userEmail = HttpContext.Session.GetString("StudentSession");
+                Student student = studentDB.Students.FirstOrDefault(s => s.Email == userEmail);
+                ViewBag.MySession2=student.Id;
+                currentStudentId=student.Id;
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+            // Get the current student's ID (Replace this with your logic to fetch the current student ID)
+
+            var query = from studentCourses in studentDB.studentCourses
+                        join Courses in studentDB.Courses on studentCourses.CourseId equals Courses.CId
+                        where studentCourses.StudentId == currentStudentId
+                        select new
+                        {
+                            CourseName = Courses.CourseName,
+                            CourseCode = Courses.CourseCode,
+                            Semester = studentCourses.Semester
+                        };
+
+            //var result = query.FirstOrDefault(); // Assuming you expect only one result
+            ViewBag.Result = query;
+
+
+            return View(query.ToList());
+        }
+
+
+
+
+
+
+
+
+
 
 
 
@@ -146,10 +192,10 @@ namespace CampusConnected.Controllers
 
                     return View(registeredCourses);
                 }*/
-		//Show registered Course Details END HERE
+        //Show registered Course Details END HERE
 
-		// Offered Courses here
-		/*        public IActionResult ShowOfferedCourses()
+        // Offered Courses here
+        /*        public IActionResult ShowOfferedCourses()
 				{
 					int currentStudentId;
 					if (HttpContext.Session.GetString("UserSession") != null)
@@ -175,7 +221,7 @@ namespace CampusConnected.Controllers
 					return View(unregisteredCourses);
 				}*/
 
-		public IActionResult Index()
+        public IActionResult Index()
 		{
 			if (HttpContext.Session.GetString("StudentSession") != null)
 			{
@@ -508,6 +554,16 @@ namespace CampusConnected.Controllers
 			return grades;
 		}
 
+
+
+        public IActionResult Attendance()
+        {
+            if (HttpContext.Session.GetString("StudentSession") == null)
+            {
+				return View("Login");
+            }
+            return View();
+        }
 
         public IActionResult Logout()
         {

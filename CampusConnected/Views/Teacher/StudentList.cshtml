@@ -33,7 +33,14 @@
         </div>
     }
 }
+<form method="get" asp-action="StudentList">
+    <p>
+        <input type="search" placeholder="Enter Student Name or ID ...." value="@ViewData["GetStddetails"]" name="stdsearch" style="width:500px;" />
+        <input type="submit" value="Search" class="btn btn-primary" />
+        <a asp-action="StudentList">Show All Students</a>
+    </p>
 
+</form>
 <table class="table table-bordered table-striped table-hover">
     <thead class="thead-dark">
         <tr>

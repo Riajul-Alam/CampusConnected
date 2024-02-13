@@ -119,6 +119,19 @@ namespace CampusConnected.Controllers
             return View(stdData);
         }
 
+        //Search
+        [HttpGet]
+        public async Task<IActionResult> TeacherList(string Tsearch)
+        {
+            ViewData["GetTdetails"] = Tsearch;
+
+            var Tquery = from x in context.Teachers select x;
+            if (!string.IsNullOrEmpty(Tsearch))
+            {
+                Tquery = Tquery.Where(x => x.TeacherName.Contains(Tsearch) || x.TeacherDepartment.Contains(Tsearch));
+            }
+            return View(await Tquery.AsNoTracking().ToListAsync());
+        }
 
 
 
