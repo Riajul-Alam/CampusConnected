@@ -1,4 +1,6 @@
-﻿using CampusConnected.Models;
+﻿using CampusConnected.Migrations;
+using CampusConnected.Models;
+using CampusConnected.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography;
@@ -98,23 +100,29 @@ namespace CampusConnected.Controllers
             {
                 return RedirectToAction("Login");
             }
-            // Get the current student's ID (Replace this with your logic to fetch the current student ID)
 
-            var query = from studentCourses in studentDB.studentCourses
-                        join Courses in studentDB.Courses on studentCourses.CourseId equals Courses.CId
-                        where studentCourses.StudentId == currentStudentId
-                        select new
-                        {
-                            CourseName = Courses.CourseName,
-                            CourseCode = Courses.CourseCode,
-                            Semester = studentCourses.Semester
-                        };
+            // want to write query here
+            string courseidListString = studentDB.studentCourses
+                .Where(sc => sc.StudentId == currentStudentId)
+                .Select(sc => sc.CourseidList)
+                .FirstOrDefault();
 
-            //var result = query.FirstOrDefault(); // Assuming you expect only one result
-            ViewBag.Result = query;
+            // Parse the courseidListString into a list of integers
+            var courseIdList = courseidListString.Split(',').Select(int.Parse).ToList();
 
-
-            return View(query.ToList());
+            // Now you have courseIdList which contains the course IDs for the current student
+            ViewBag.CourseIdList = courseIdList;
+            var courses1 = studentDB.Courses
+                .Where(c => courseIdList.Contains(c.CId))
+                .ToList();
+            if (courses1 == null || courses1.Count == 0)
+            {
+                // Handle the case where no courses are found
+                // For example, you can set courses1 to an empty list:
+                courses1 = new List<Course>();
+            }
+            // Pass the list of courses to the view
+            return View(courses1);
         }
 
 
@@ -223,6 +231,7 @@ namespace CampusConnected.Controllers
 
         public IActionResult Index()
 		{
+			// riaj creating session for Show result report
 			if (HttpContext.Session.GetString("StudentSession") != null)
 			{
 				ViewBag.MySession = HttpContext.Session.GetString("StudentSession").ToString();
@@ -235,6 +244,7 @@ namespace CampusConnected.Controllers
 				{
                     /*					ViewBag.CurrentStudentId=(student.StudentId) as string;
                                         ViewBag.CurrentDepartmentId=(student.DepartmentId);*/
+					// Collect StudentId and DepartmentName for sending to view 
                     ViewBag.CurrentStudentId = student.StudentId.ToString();
                     ViewBag.CurrentDepartmentName = student.DepartmentName;
 
@@ -250,7 +260,7 @@ namespace CampusConnected.Controllers
 			}
 
 
-/*
+
 			var departments = studentDB.Departments.ToList();
 			var students = studentDB.Students.ToList();
 			var obj = new ResultReport
@@ -259,7 +269,7 @@ namespace CampusConnected.Controllers
 				DepartmentList = departments,
 			};
 
-			ViewData["ViewModelData"] = obj;*/
+			ViewData["ViewModelData"] = obj;
 
 			var sortedResults = studentDB.studentResult.OrderByDescending(result => result.Grade).ToList();
 			ViewData["SortedResults"] = sortedResults;
